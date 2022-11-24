@@ -1,0 +1,351 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>移动端适配 | 随时奉陪</title><meta name="author" content="随时奉陪"><meta name="copyright" content="随时奉陪"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="移动端 REM 适配Vant 中的样式默认使用 px 作为单位，如果需要使用 rem 单位，推荐使用以下两个工具：  postcss-pxtorem 是一款 postcss 插件，用于将单位转化为 rem lib-flexible 用于设置 rem 基准值  分别将这两个工具配置到项目中完成 REM"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://metabo6.github.io/posts/783ce8a9"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '移动端适配',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-10-19 09:16:58'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/butterfly/index.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">30</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-tags"></i><span> 仿 win10</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-folder-open"></i><span> 学习资料</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-fish"></i><span> 摸鱼</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-tools"></i><span> 工具</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-anchor"></i><span> 动画</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-place-of-worship"></i><span> 摸鱼大军</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/butterfly/5.webp')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">随时奉陪</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-tags"></i><span> 仿 win10</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-folder-open"></i><span> 学习资料</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-fish"></i><span> 摸鱼</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-tools"></i><span> 工具</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-anchor"></i><span> 动画</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-place-of-worship"></i><span> 摸鱼大军</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">移动端适配</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-10-17T07:43:07.000Z" title="发表于 2022-10-17 15:43:07">2022-10-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-19T01:16:58.354Z" title="更新于 2022-10-19 09:16:58">2022-10-19</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="移动端适配"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="移动端-REM-适配"><a href="#移动端-REM-适配" class="headerlink" title="移动端 REM 适配"></a>移动端 REM 适配</h1><p>Vant 中的样式默认使用 <code>px</code> 作为单位，如果需要使用 <code>rem</code> 单位，推荐使用以下两个工具：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/cuth/postcss-pxtorem">postcss-pxtorem</a> 是一款 postcss 插件，用于将单位转化为 rem</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/amfe/lib-flexible">lib-flexible</a> 用于设置 rem 基准值</li>
+</ul>
+<p>分别将这两个工具配置到项目中完成 REM 适配。</p>
+<p><strong>一、使用 <a target="_blank" rel="noopener" href="https://github.com/amfe/lib-flexible">lib-flexible</a> 动态设置 REM 基准值（html 标签的字体大小）</strong></p>
+<p>1、安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">yarn add amfe-flexible</span></span><br><span class="line">npm i amfe-flexible</span><br></pre></td></tr></table></figure>
+
+<p>2、然后在 <code>main.js</code> 中加载执行该模块</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;amfe-flexible&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>最后测试：在浏览器中切换不同的手机设备尺寸，观察 html 标签 <code>font-size</code> 的变化。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/iphone6.png" alt="image.png"></p>
+<blockquote>
+<p>例如在 iPhone 6&#x2F;7&#x2F;8 设备下，html 标签字体大小为 37.5 px</p>
+</blockquote>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/iphone6-1665992688369.png" alt="image.png"></p>
+<blockquote>
+<p>例如在 iPhone 6&#x2F;7&#x2F;8 Plus 设备下，html 标签字体大小为 41.4 px</p>
+</blockquote>
+<p><strong>二、使用 <a target="_blank" rel="noopener" href="https://github.com/cuth/postcss-pxtorem">postcss-pxtorem</a> 将 <code>px</code> 转为 <code>rem</code></strong></p>
+<p>1、安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">yarn add -D postcss-pxtorem</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-D 是 --save-dev 的简写</span></span><br><span class="line">npm install postcss-pxtorem -D</span><br></pre></td></tr></table></figure>
+
+<p>2、然后在<strong>项目根目录</strong>中创建 <code>.postcssrc.js</code> 文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">plugins</span>: &#123;</span><br><span class="line">    <span class="string">&#x27;autoprefixer&#x27;</span>: &#123;</span><br><span class="line">      <span class="attr">browsers</span>: [<span class="string">&#x27;Android &gt;= 4.0&#x27;</span>, <span class="string">&#x27;iOS &gt;= 8&#x27;</span>]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&#x27;postcss-pxtorem&#x27;</span>: &#123;</span><br><span class="line">      <span class="attr">rootValue</span>: <span class="number">37.5</span>,</span><br><span class="line">      <span class="attr">propList</span>: [<span class="string">&#x27;*&#x27;</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>3、<strong>配置完毕，重新启动服务</strong></p>
+<p>最后测试：<strong>刷新浏览器页面</strong>，审查元素的样式查看是否已将 <code>px</code> 转换为 <code>rem</code>。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/before_2022-10-17_15-47-24.png" alt="image.png"></p>
+<blockquote>
+<p>这是没有配置转换之前的。</p>
+</blockquote>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/after_2022-10-17_15-49-04.png" alt="image.png"></p>
+<blockquote>
+<p>这是转换之后的，可以看到 px 都被转换为了 rem。</p>
+</blockquote>
+<p><strong>需要注意的是：</strong></p>
+<ul>
+<li>该插件**不能转换行内样式中的 <code>px</code>**，例如 <code>&lt;div style=&quot;width: 200px;&quot;&gt;&lt;/div&gt;</code></li>
+</ul>
+<h2 id="关于-postcssrc-js-配置文件"><a href="#关于-postcssrc-js-配置文件" class="headerlink" title="关于 .postcssrc.js 配置文件"></a>关于 <code>.postcssrc.js</code> 配置文件</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">plugins</span>: &#123;</span><br><span class="line">    <span class="string">&#x27;autoprefixer&#x27;</span>: &#123;</span><br><span class="line">      <span class="attr">browsers</span>: [<span class="string">&#x27;Android &gt;= 4.0&#x27;</span>, <span class="string">&#x27;iOS &gt;= 8&#x27;</span>]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&#x27;postcss-pxtorem&#x27;</span>: &#123;</span><br><span class="line">      <span class="attr">rootValue</span>: <span class="number">37.5</span>,</span><br><span class="line">      <span class="attr">propList</span>: [<span class="string">&#x27;*&#x27;</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>.postcssrc.js</code> 是 PostCSS 的配置文件。</p>
+<p>（1）PostCSS 介绍</p>
+<p><a target="_blank" rel="noopener" href="https://postcss.org/">PostCSS</a> 是一个处理 CSS 的处理工具，本身功能比较单一，它主要负责解析 CSS 代码，再交由插件来进行处理，它的插件体系非常强大，所能进行的操作是多种多样的，例如：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/postcss/autoprefixer">Autoprefixer</a> 插件可以实现自动添加浏览器相关的声明前缀</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/csstools/postcss-preset-env">PostCSS Preset Env</a> 插件可以让你使用更新的 CSS 语法特性并实现向下兼容</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/cuth/postcss-pxtorem">postcss-pxtorem</a> 可以实现将 px 转换为 rem</li>
+<li>…</li>
+</ul>
+<p>目前 PostCSS 已经有 <a target="_blank" rel="noopener" href="https://github.com/postcss/postcss/blob/master/docs/plugins.md">200 多个功能各异的插件</a>。开发人员也可以根据项目的需要，开发出自己的 PostCSS 插件。</p>
+<p>PostCSS 一般不单独使用，而是与已有的构建工具进行集成。</p>
+<p><a target="_blank" rel="noopener" href="https://cli.vuejs.org/zh/guide/css.html#postcss">Vue CLI 默认集成了 PostCSS</a>，并且默认开启了 <a target="_blank" rel="noopener" href="https://github.com/postcss/autoprefixer">autoprefixer</a> 插件。</p>
+<blockquote>
+<p>Vue CLI 内部使用了 PostCSS。</p>
+<p>你可以通过 <code>.postcssrc</code> 或任何 <a target="_blank" rel="noopener" href="https://github.com/michael-ciniawsky/postcss-load-config">postcss-load-config</a> 支持的配置源来配置 PostCSS。也可以通过 <code>vue.config.js</code> 中的 <code>css.loaderOptions.postcss</code> 配置 <a target="_blank" rel="noopener" href="https://github.com/postcss/postcss-loader">postcss-loader</a>。</p>
+<p>我们默认开启了 <a target="_blank" rel="noopener" href="https://github.com/postcss/autoprefixer">autoprefixer</a>。如果要配置目标浏览器，可使用 <code>package.json</code> 的 <a target="_blank" rel="noopener" href="https://cli.vuejs.org/zh/guide/browser-compatibility.html#browserslist">browserslist</a> 字段。</p>
+</blockquote>
+<p>（2）Autoprefixer 插件的配置</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/image-20200319104557718.png" alt="image-20200319104557718"></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/postcss/autoprefixer">autoprefixer</a> 是一个自动添加浏览器前缀的 PostCss 插件，<code>browsers</code> 用来配置兼容的浏览器版本信息，但是写在这里的话会引起编译器警告。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Replace Autoprefixer browsers option to Browserslist config.</span><br><span class="line">Use browserslist key in package.json or .browserslistrc file.</span><br><span class="line"></span><br><span class="line">Using browsers option can cause errors. Browserslist config</span><br><span class="line">can be used for Babel, Autoprefixer, postcss-normalize and other tools.</span><br><span class="line"></span><br><span class="line">If you really need to use option, rename it to overrideBrowserslist.</span><br><span class="line"></span><br><span class="line">Learn more at:</span><br><span class="line">https://github.com/browserslist/browserslist#readme</span><br><span class="line">https://twitter.com/browserslist</span><br></pre></td></tr></table></figure>
+
+<p>警告意思就是说你应该将 <code>browsers</code> 选项写到 <code>package.json</code> 或 <code>.browserlistrc</code> 文件中。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// package.json 中添加</span></span><br><span class="line"> <span class="attr">&quot;browserslist&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;&gt; 1%&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;last 2 versions&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;not dead&quot;</span></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者新建 .browserlistrc 文件</span></span><br><span class="line">&gt; <span class="number">1</span>%</span><br><span class="line">last <span class="number">2</span> versions</span><br><span class="line">not dead</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>具体语法请<a target="_blank" rel="noopener" href="https://github.com/browserslist/browserslist">参考这里</a>。</p>
+</blockquote>
+<p>（3）postcss-pxtorem 插件的配置</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/image-20200319105610557.png" alt="image-20200319105610557"></p>
+<ul>
+<li><code>rootValue</code>：表示根元素字体大小，它会根据根元素大小进行单位转换</li>
+<li><code>propList</code> 用来设定可以从 px 转为 rem 的属性<ul>
+<li>例如 <code>*</code> 就是所有属性都要转换，<code>width</code> 就是仅转换 <code>width</code> 属性</li>
+</ul>
+</li>
+</ul>
+<p><code>rootValue</code> 应该如何设置呢？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">如果你使用的是基于 lib-flexable 的 REM 适配方案，则应该设置为你的设计稿的十分之一。</span><br><span class="line">例如设计稿是 750 宽，则应该设置为 75。</span><br></pre></td></tr></table></figure>
+
+
+
+<p>大多数设计稿的原型都是以 iphone6 为原型，iphone6 设备的宽是 750</p>
+<p>但是如果使用 Vant ，官方建议设置为 37.5，为什么呢？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">因为 Vant 是基于 375 写的，所以如果你设置为 75 的话，Vant 的样式就小了一半。</span><br></pre></td></tr></table></figure>
+
+<p>所以如果设置为 <code>37.5</code> 的话，Vant 的样式是没有问题的，但是我们在测量设计稿的时候都必须除2才能使用，否则就会变得很大。</p>
+<p>这样做其实也没有问题，但是有没有更好的办法呢？我就想实现测量多少写多少（不用换算）。于是聪明的你就想，可以不可以这样来做？</p>
+<ul>
+<li>如果是 Vant 的样式，就把 <code>rootValue</code> 设置为 37.5 来转换</li>
+<li>如果是我们的样式，就按照 75 的 <code>rootValue</code> 来转换</li>
+</ul>
+<p>通过<a target="_blank" rel="noopener" href="https://github.com/cuth/postcss-pxtorem#options">查阅文档</a>我们可以看到 <code>rootValue</code> 支持两种参数类型：</p>
+<ul>
+<li>数字：固定值</li>
+<li>函数：动态计算返回<ul>
+<li>postcss-pxtorem 处理每个 CSS 文件的时候都会来调用这个函数</li>
+<li>它会把被处理的 CSS 文件相关的信息通过参数传递给该函数</li>
+</ul>
+</li>
+</ul>
+<p>所以我们修改配置如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * PostCSS 配置文件</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="comment">// 配置要使用的 PostCSS 插件</span></span><br><span class="line">  <span class="attr">plugins</span>: &#123;</span><br><span class="line">    <span class="comment">// 配置使用 autoprefixer 插件</span></span><br><span class="line">    <span class="comment">// 作用：生成浏览器 CSS 样式规则前缀</span></span><br><span class="line">    <span class="comment">// VueCLI 内部已经配置了 autoprefixer 插件</span></span><br><span class="line">    <span class="comment">// 所以又配置了一次，所以产生冲突了</span></span><br><span class="line">    <span class="comment">// &#x27;autoprefixer&#x27;: &#123; // autoprefixer 插件的配置</span></span><br><span class="line">    <span class="comment">//   // 配置要兼容到的环境信息</span></span><br><span class="line">    <span class="comment">//   browsers: [&#x27;Android &gt;= 4.0&#x27;, &#x27;iOS &gt;= 8&#x27;]</span></span><br><span class="line">    <span class="comment">// &#125;,</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 配置使用 postcss-pxtorem 插件</span></span><br><span class="line">    <span class="comment">// 作用：把 px 转为 rem</span></span><br><span class="line">    <span class="string">&#x27;postcss-pxtorem&#x27;</span>: &#123;</span><br><span class="line">      rootValue (&#123; file &#125;) &#123;</span><br><span class="line">        <span class="keyword">return</span> file.<span class="title function_">indexOf</span>(<span class="string">&#x27;vant&#x27;</span>) !== -<span class="number">1</span> ? <span class="number">37.5</span> : <span class="number">75</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">propList</span>: [<span class="string">&#x27;*&#x27;</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>配置完毕，把服务重启一下，最后测试，very good。</p>
+<h2 id="Vue-配置方法"><a href="#Vue-配置方法" class="headerlink" title="Vue 配置方法"></a>Vue 配置方法</h2><p>在 Vue 项目中使用步骤如下</p>
+<ol>
+<li>下包：此处推荐使用 5.1.1 版本，最新版本可能会报错</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add amfe-flexible postcss-pxtorem@<span class="number">5.1</span><span class="number">.1</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>配置</p>
+<ul>
+<li>配置 <code>amfe-flexible</code>：在 <code>main.js</code> 中导入</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;amfe-flexible&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>根目录新建 <code>.postcssrc.js</code> 文件并配置</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">plugins</span>: &#123;</span><br><span class="line">    <span class="attr">autoprefixer</span>: &#123;</span><br><span class="line">      <span class="attr">browsers</span>: [<span class="string">&quot;Android &gt;= 4.0&quot;</span>, <span class="string">&quot;iOS &gt;= 8&quot;</span>],</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// &#x27;postcss-pxtorem&#x27;: &#123;</span></span><br><span class="line">    <span class="comment">//   rootValue: 37.5,</span></span><br><span class="line">    <span class="comment">//   propList: [&#x27;*&#x27;]</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">    <span class="comment">// 如需使用 vant 组件库可做如下配置，如直接使用使用上述配置</span></span><br><span class="line">    <span class="string">&quot;postcss-pxtorem&quot;</span>: &#123;</span><br><span class="line">      <span class="title function_">rootValue</span>(<span class="params">&#123;file&#125;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> file.<span class="title function_">indexOf</span>(<span class="string">&quot;vant&quot;</span>) !== -<span class="number">1</span> ? <span class="number">37.5</span> : <span class="number">75</span>;</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">propList</span>: [<span class="string">&quot;*&quot;</span>],</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>配置完毕重启服务</li>
+</ol>
+</li>
+</ol>
+<h2 id="React-配置方法"><a href="#React-配置方法" class="headerlink" title="React 配置方法"></a>React 配置方法</h2><p>react 由于像 webpack，babel 等等都是被 creat react app 封装到了 react-scripts 这个项目当中，所以如需适配有两种方法</p>
+<h3 id="1-npm-run-eject-命令"><a href="#1-npm-run-eject-命令" class="headerlink" title="1. npm run eject 命令"></a>1. npm run eject 命令</h3><blockquote>
+<p>执行 npm run eject 命令（不推荐），该命令会将原本 creat react app 对 webpack，babel等相关配置的封装弹射出来，操作不可逆。使用须慎重</p>
+</blockquote>
+<p><strong>步骤</strong></p>
+<ol>
+<li>执行如下命令并下包，执行完毕后会在根目录生成 config 目录</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yarn eject or npm run eject</span><br><span class="line"><span class="comment">// 下包</span></span><br><span class="line">yarn add amfe-flexible postcss-pxtorem@<span class="number">5.1</span><span class="number">.1</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>在 config 目录中找到 webpack.config.js 文件中配置如下信息</li>
+</ol>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/config_2022-10-17_16-23-48.png" alt="img"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 搜索 postcss-normalize ，找到配置位置添加如下内容</span></span><br><span class="line"><span class="string">&#x27;postcss-normalize&#x27;</span>,</span><br><span class="line">[</span><br><span class="line">  <span class="string">&#x27;postcss-pxtorem&#x27;</span>,</span><br><span class="line">  &#123;</span><br><span class="line">      <span class="attr">rootValue</span>: <span class="number">37.5</span>,</span><br><span class="line">      <span class="attr">propList</span>: [<span class="string">&#x27;*&#x27;</span>]</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br><span class="line"><span class="comment">// 或者</span></span><br><span class="line"><span class="string">&#x27;postcss-normalize&#x27;</span>,</span><br><span class="line"><span class="built_in">require</span>(<span class="string">&#x27;postcss-pxtorem&#x27;</span>)(&#123;</span><br><span class="line">	<span class="attr">rootValue</span>: <span class="number">37.5</span>,</span><br><span class="line">	<span class="attr">selectorBlackList</span>: [], <span class="comment">//过滤</span></span><br><span class="line">	<span class="attr">propList</span>: [<span class="string">&#x27;*&#x27;</span>],</span><br><span class="line">	<span class="attr">exclude</span>: <span class="regexp">/node_modules/i</span>,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>重启服务即可生效</li>
+</ol>
+<h3 id="2-craco-配置"><a href="#2-craco-配置" class="headerlink" title="2. craco 配置"></a>2. craco 配置</h3><blockquote>
+<p>craco 是用来对 CRA 创建的项目进行自定义配置的工具，更推荐这种方法</p>
+</blockquote>
+<p><strong>步骤</strong></p>
+<ol>
+<li>下包</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add @craco/craco amfe-flexible postcss-pxtorem@<span class="number">5.1</span><span class="number">.1</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>创建并配置 <code>craco.config.js</code> 文件</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="comment">// ... 省略其他</span></span><br><span class="line">  <span class="attr">style</span>: &#123;</span><br><span class="line">    <span class="attr">postcss</span>: &#123;</span><br><span class="line">      <span class="attr">mode</span>: <span class="string">&#x27;extends&#x27;</span>,</span><br><span class="line">      <span class="attr">loaderOptions</span>: <span class="function">(<span class="params">postcssLoaderOptions, &#123; env, paths &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">        postcssLoaderOptions.<span class="property">postcssOptions</span>.<span class="property">plugins</span> = [</span><br><span class="line">          ...postcssLoaderOptions.<span class="property">postcssOptions</span>.<span class="property">plugins</span>,</span><br><span class="line">          [</span><br><span class="line">            <span class="string">&#x27;autoprefixer&#x27;</span>,</span><br><span class="line">            &#123;</span><br><span class="line">              <span class="attr">overrideBrowserslist</span>: [</span><br><span class="line">                <span class="string">&#x27;last 2 version&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;&gt;1%&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;Android &gt;= 4.0&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;iOS &gt;= 7&#x27;</span></span><br><span class="line">              ]</span><br><span class="line">            &#125;</span><br><span class="line">          ],</span><br><span class="line">          [</span><br><span class="line">            <span class="string">&#x27;postcss-pxtorem&#x27;</span>,</span><br><span class="line">            &#123;</span><br><span class="line">              rootValue (&#123; file &#125;) &#123;</span><br><span class="line">                <span class="comment">// return file.indexOf(&#x27;antd-mobile&#x27;) &gt; -1 ? 37.5 : 75;</span></span><br><span class="line">                <span class="keyword">return</span> <span class="number">37.5</span></span><br><span class="line">              &#125;,</span><br><span class="line">              <span class="attr">unitPrecision</span>: <span class="number">2</span>, <span class="comment">// 只转换到两位小数</span></span><br><span class="line">              <span class="attr">propList</span>: [<span class="string">&#x27;*&#x27;</span>]</span><br><span class="line">            &#125;</span><br><span class="line">          ]</span><br><span class="line">        ]</span><br><span class="line">        <span class="keyword">return</span> postcssLoaderOptions</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>重启服务发现已生效</li>
+</ol>
+<h1 id="移动端-VW-适配"><a href="#移动端-VW-适配" class="headerlink" title="移动端 VW 适配"></a>移动端 VW 适配</h1><h3 id="Vue-配置方法-1"><a href="#Vue-配置方法-1" class="headerlink" title="Vue 配置方法"></a>Vue 配置方法</h3><p><strong>步骤</strong></p>
+<ol>
+<li>下包</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add postcss-px-to-viewport</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>创建并配置 <code>.postcssrc.js</code> 文件</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">plugins</span>: &#123;</span><br><span class="line">    <span class="attr">autoprefixer</span>: &#123;&#125;, <span class="comment">// 用来给不同的浏览器自动添加相应前缀，如-webkit-，-moz-等等</span></span><br><span class="line">    <span class="string">&quot;postcss-px-to-viewport&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">unitToConvert</span>: <span class="string">&quot;px&quot;</span>, <span class="comment">// 要转化的单位</span></span><br><span class="line">      <span class="attr">viewportWidth</span>: <span class="number">375</span>, <span class="comment">// UI设计稿的宽度</span></span><br><span class="line">      <span class="attr">unitPrecision</span>: <span class="number">6</span>, <span class="comment">// 转换后的精度，即小数点位数</span></span><br><span class="line">      <span class="attr">propList</span>: [<span class="string">&quot;*&quot;</span>], <span class="comment">// 指定转换的css属性的单位，*代表全部css属性的单位都进行转换</span></span><br><span class="line">      <span class="attr">viewportUnit</span>: <span class="string">&quot;vw&quot;</span>, <span class="comment">// 指定需要转换成的视窗单位，默认vw</span></span><br><span class="line">      <span class="attr">fontViewportUnit</span>: <span class="string">&quot;vw&quot;</span>, <span class="comment">// 指定字体需要转换成的视窗单位，默认vw</span></span><br><span class="line">      <span class="attr">selectorBlackList</span>: [<span class="string">&quot;wrap&quot;</span>], <span class="comment">// 指定不转换为视窗单位的类名，</span></span><br><span class="line">      <span class="attr">minPixelValue</span>: <span class="number">1</span>, <span class="comment">// 默认值1，小于或等于1px则不进行转换</span></span><br><span class="line">      <span class="attr">mediaQuery</span>: <span class="literal">true</span>, <span class="comment">// 是否在媒体查询的css代码中也进行转换，默认false</span></span><br><span class="line">      <span class="attr">replace</span>: <span class="literal">true</span>, <span class="comment">// 是否转换后直接更换属性值</span></span><br><span class="line">      <span class="attr">exclude</span>: [<span class="regexp">/node_modules/</span>], <span class="comment">// 设置忽略文件，用正则做目录名匹配</span></span><br><span class="line">      <span class="attr">landscape</span>: <span class="literal">false</span> <span class="comment">// 是否处理横屏情况</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>或者不创建 <code>.postcssrc.js</code>文件，直接在 <code>vue.config.js</code> 文件中配置</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> pxtoviewport = <span class="built_in">require</span>(<span class="string">&#x27;postcss-px-to-viewport&#x27;</span>)</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="comment">// ...省略其他配置</span></span><br><span class="line">  <span class="attr">css</span>: &#123;</span><br><span class="line">    <span class="attr">loaderOptions</span>: &#123;</span><br><span class="line">      <span class="attr">postcss</span>: &#123;</span><br><span class="line">        <span class="attr">plugins</span>: [</span><br><span class="line">         <span class="title function_">pxtoviewport</span>(&#123;</span><br><span class="line">            <span class="attr">viewportWidth</span>: <span class="number">375</span> <span class="comment">// 视窗的宽度，对应的是设计稿的宽度，一般是750</span></span><br><span class="line">          &#125;)</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>配置完毕后重启服务器即可生效</li>
+</ol>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/vue_2022-10-17_17-25-07.png"></p>
+<h3 id="React-配置方法-1"><a href="#React-配置方法-1" class="headerlink" title="React 配置方法"></a>React 配置方法</h3><p>使用最新版本 create-react-app 创建项目时，默认已经引入了 postcss8，在对其进行配置   postcss-px-to-viewport ,打算适配移动端视口时，会出现安装的 postcss-px-to-viewport 不适配最新版本的 postcss8</p>
+<p> 报出如下问题：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">postcss-px-to-<span class="attr">viewport</span>: postcss.<span class="property">plugin</span> was deprecated. <span class="title class_">Migration</span> <span class="attr">guide</span>:</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//evilmartians.com/chronicles/postcss-8-plugin-migration</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>解决</strong>：安装适配8的版本</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add postcss-px-to-viewport-8-plugin</span><br></pre></td></tr></table></figure>
+
+<p>安装后还需进行配置， craco 官方给出的配置方式无法生效，详见 <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43616690/article/details/125764625">参考文章</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="comment">// ... 省略其他配置</span></span><br><span class="line">  <span class="attr">style</span>: &#123;</span><br><span class="line">    <span class="attr">postcss</span>: &#123;</span><br><span class="line">      <span class="comment">//   plugins: [vw]</span></span><br><span class="line">      <span class="attr">mode</span>: <span class="string">&#x27;extends&#x27;</span>,</span><br><span class="line">      <span class="attr">loaderOptions</span>: &#123;</span><br><span class="line">        <span class="attr">postcssOptions</span>: &#123;</span><br><span class="line">          <span class="attr">ident</span>: <span class="string">&#x27;postcss&#x27;</span>,</span><br><span class="line">          <span class="attr">plugins</span>: [</span><br><span class="line">            [</span><br><span class="line">              <span class="string">&#x27;postcss-px-to-viewport-8-plugin&#x27;</span>,</span><br><span class="line">              &#123;</span><br><span class="line">                <span class="attr">viewportWidth</span>: <span class="number">375</span> <span class="comment">// 设计稿的视口宽度</span></span><br><span class="line">              &#125;</span><br><span class="line">            ]</span><br><span class="line">          ]</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>配置完毕启动服务，发现配置已生效</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/react_2022-10-17_17-02-26.png"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://metabo6.github.io">随时奉陪</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://metabo6.github.io/posts/783ce8a9.html">https://metabo6.github.io/posts/783ce8a9.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://metabo6.github.io" target="_blank">随时奉陪</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/butterfly/5.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/a90c89c3.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/canvas%E5%9F%BA%E7%A1%80/Snipaste_2022-10-24_12-31-49.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">canvas基础</div></div></a></div><div class="next-post pull-right"><a href="/posts/undefined.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/butterfly/6.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">报错总结</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/butterfly/index.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">随时奉陪</div><div class="author-info__description">向往自由，追求自由，找寻自由</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">30</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/metabo6"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8%E7%AB%AF-REM-%E9%80%82%E9%85%8D"><span class="toc-number">1.</span> <span class="toc-text">移动端 REM 适配</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E-postcssrc-js-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.</span> <span class="toc-text">关于 .postcssrc.js 配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue-%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">Vue 配置方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React-%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">React 配置方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-npm-run-eject-%E5%91%BD%E4%BB%A4"><span class="toc-number">1.3.1.</span> <span class="toc-text">1. npm run eject 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-craco-%E9%85%8D%E7%BD%AE"><span class="toc-number">1.3.2.</span> <span class="toc-text">2. craco 配置</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8%E7%AB%AF-VW-%E9%80%82%E9%85%8D"><span class="toc-number">2.</span> <span class="toc-text">移动端 VW 适配</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue-%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95-1"><span class="toc-number">2.0.1.</span> <span class="toc-text">Vue 配置方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#React-%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95-1"><span class="toc-number">2.0.2.</span> <span class="toc-text">React 配置方法</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/a5ae354f.html" title="数组、字符串常用方法"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/React%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%BB%E7%BB%93/js.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="数组、字符串常用方法"/></a><div class="content"><a class="title" href="/posts/a5ae354f.html" title="数组、字符串常用方法">数组、字符串常用方法</a><time datetime="2022-11-24T02:24:11.000Z" title="发表于 2022-11-24 10:24:11">2022-11-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/b0de96e1.html" title="CSS 总结"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/React%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%BB%E7%BB%93/css.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CSS 总结"/></a><div class="content"><a class="title" href="/posts/b0de96e1.html" title="CSS 总结">CSS 总结</a><time datetime="2022-11-24T02:22:36.000Z" title="发表于 2022-11-24 10:22:36">2022-11-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/f1991798.html" title="Git 总结"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/React%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%BB%E7%BB%93/git.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Git 总结"/></a><div class="content"><a class="title" href="/posts/f1991798.html" title="Git 总结">Git 总结</a><time datetime="2022-11-24T02:22:36.000Z" title="发表于 2022-11-24 10:22:36">2022-11-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/50b39724.html" title="HTML 总结"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/React%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%BB%E7%BB%93/HTML.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="HTML 总结"/></a><div class="content"><a class="title" href="/posts/50b39724.html" title="HTML 总结">HTML 总结</a><time datetime="2022-11-24T02:22:36.000Z" title="发表于 2022-11-24 10:22:36">2022-11-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/588ad959.html" title="JS 基础总结"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/React%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%BB%E7%BB%93/js.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JS 基础总结"/></a><div class="content"><a class="title" href="/posts/588ad959.html" title="JS 基础总结">JS 基础总结</a><time datetime="2022-11-24T02:22:36.000Z" title="发表于 2022-11-24 10:22:36">2022-11-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 随时奉陪</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script src="/js/weather.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

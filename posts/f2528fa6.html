@@ -1,0 +1,245 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Node 基础总结 | 随时奉陪</title><meta name="author" content="随时奉陪"><meta name="copyright" content="随时奉陪"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="node 基础学习总结1. 概念 node.js 是基于 chrome v8 引擎构建的 js 运行环境,让 js 有了做后端开发的能力  2. 模块化及分类 模块化,就是把大的文件拆分成一个个小的文件,而且能通过特定语法组合到一起的实现过程 更利于项目的维护,且具有更好的复用性 分为 自定义模块"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://metabo6.github.io/posts/f2528fa6"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Node 基础总结',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-11-24 11:23:03'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/butterfly/index.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">30</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-tags"></i><span> 仿 win10</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-folder-open"></i><span> 学习资料</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-fish"></i><span> 摸鱼</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-tools"></i><span> 工具</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-anchor"></i><span> 动画</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-place-of-worship"></i><span> 摸鱼大军</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/../../../../img/React%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%BB%E7%BB%93/nodejs.webp')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">随时奉陪</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-tags"></i><span> 仿 win10</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-folder-open"></i><span> 学习资料</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-fish"></i><span> 摸鱼</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-tools"></i><span> 工具</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-anchor"></i><span> 动画</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-place-of-worship"></i><span> 摸鱼大军</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Node 基础总结</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-24T02:22:36.000Z" title="发表于 2022-11-24 10:22:36">2022-11-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-24T03:23:03.143Z" title="更新于 2022-11-24 11:23:03">2022-11-24</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Node 基础总结"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="node-基础学习总结"><a href="#node-基础学习总结" class="headerlink" title="node 基础学习总结"></a>node 基础学习总结</h2><h3 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h3><ul>
+<li>node.js 是基于 chrome v8 引擎构建的 js 运行环境,让 js 有了做后端开发的能力</li>
+</ul>
+<h3 id="2-模块化及分类"><a href="#2-模块化及分类" class="headerlink" title="2. 模块化及分类"></a>2. 模块化及分类</h3><ul>
+<li>模块化,就是把大的文件拆分成一个个小的文件,而且能通过特定语法组合到一起的实现过程</li>
+<li>更利于项目的维护,且具有更好的复用性</li>
+<li>分为 自定义模块  内置模块    第三方模块</li>
+</ul>
+<h3 id="3-内置模块"><a href="#3-内置模块" class="headerlink" title="3. 内置模块"></a>3. 内置模块</h3><ol>
+<li><h4 id="path-模块"><a href="#path-模块" class="headerlink" title="path 模块"></a>path 模块</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 常见内置 api</span><br><span class="line">path.basename(path[, ext]) // 返回 path 的最后一部分(文件名) </span><br><span class="line">  path.basename(&#x27;./aaa/bbb/index.html&#x27;) //  index.html</span><br><span class="line">path.dirname(path)        // 返回目录名 </span><br><span class="line">  path.dirname(&#x27;./aaa/bbb/index.html&#x27;)   // ./aaa/bbb</span><br><span class="line">path.extname(path)        //返回路径中文件的扩展名(包含.)  </span><br><span class="line">  path.extname(&#x27;./aaa/bbb/index.html&#x27;) // .html</span><br><span class="line">path.format(pathObject)     将一个对象格式化为一个路径字符串 </span><br><span class="line">// 用法较为复杂 详见 https://vimsky.com/examples/usage/node-js-path-format-method.html</span><br><span class="line">path.join([...paths])     // 拼接路径 参数可以是多个,会从前往后依次拼接 </span><br><span class="line"> path.join(&#x27;aaa&#x27;, &#x27;bbb&#x27;, &#x27;index.js&#x27;) // aaa/bbb/index.js</span><br><span class="line"> //  __dirname 永远表示当前js文件的绝对路径</span><br><span class="line">  path.join(__dirname, &#x27;aaa/index.html&#x27;) //D:\web\前端学习资料\11-node\bbb\index.html </span><br><span class="line">path.parse(path)           // 把路径字符串解析成对象的格式 同 format 方法相反 </span><br><span class="line">  path.parse(&#x27;aaa/bbb/index.html&#x27;) // &#123;</span><br><span class="line">     root: &#x27;&#x27;, dir: &#x27;aaa/bbb&#x27;,base: &#x27;index.html&#x27;,ext: &#x27;.html&#x27;,name: &#x27;index&#x27;&#125;</span><br><span class="line">path.resolve([...paths])   // 基于当前工作目录拼接路径   </span><br><span class="line">   path.resolve(&#x27;aaa/bbb/index.html&#x27;) // D:\web\前端学习资料\11-node\aaa\bbb\index.html</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><h4 id="fs-模块"><a href="#fs-模块" class="headerlink" title="fs 模块"></a>fs 模块</h4><ul>
+<li>即 file system，文件系统，该模块可以实现对 文件、文件夹的操作, 文件操作都为异步操作</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// fs.access(path, callback)        判断路径是否存在</span><br><span class="line">// fs.appendFile(file, data, callback)     向文件中追加内容</span><br><span class="line">// fs.copyFile(src, callback)         复制文件</span><br><span class="line">// fs.mkdir(path, callback)          创建目录</span><br><span class="line">// fs.readDir(path, callback)       读取目录列表</span><br><span class="line">// fs.rename(oldPath, newPath, callback)       重命名文件/目录</span><br><span class="line">// fs.rmdir(path, callback)           删除目录          | 只能删除空目录 |</span><br><span class="line">// fs.stat(path, callback)            获取文件/目录信息</span><br><span class="line">// fs.unlink(path, callback)          删除文件</span><br><span class="line">// fs.watch(filename[, options]\[, listener])   监视文件/目录</span><br><span class="line">// fs.watchFile(filename[, options], listener) 监视文件</span><br><span class="line">// fs.readFile(path, callback)      异步读取文件 </span><br><span class="line">// fs.writeFile(path, callback)      异步读取文件</span><br><span class="line">// callback 一般包含两个参数 err , data 当读取文件错误时 err 是一个错误对象,data 为 undefined 读取成功时 err 为 null, data 为读取到的文件对象</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><h4 id="querystring-模块"><a href="#querystring-模块" class="headerlink" title="querystring 模块"></a>querystring 模块</h4><ul>
+<li><p>该模块是老版本的用于解析和格式化网址查询字符串的方法</p>
+</li>
+<li><p>官方推荐使用新的 api  <code>urlSearchParams</code></p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// querystring.parse() 将查询字符串解析成JS对象</span><br><span class="line">querystring.parse(&#x27;id=1&amp;name=zs&amp;age=20&#x27;) // &#123; id: &#x27;1&#x27;, name: &#x27;zs&#x27;, age: &#x27;20&#x27; &#125;</span><br><span class="line">// querystring.stringify() 将JS对象转成查询字符串</span><br><span class="line">querystring.stringify(&#123;id:&#x27;1&#x27;,name:&#x27;zs&#x27;,age:&#x27;20&#x27;&#125;) // id=1&amp;name=zs&amp;age=20</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="http-模块"><a href="#http-模块" class="headerlink" title="http 模块"></a>http 模块</h4><ul>
+<li>该模块是一个系统模块，能够通过简单的流程创建一个Web服务器</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 1. 加载http模块</span><br><span class="line">const http = require(&#x27;http&#x27;)</span><br><span class="line">// 2. 创建服务对象，一般命名为server</span><br><span class="line">const server = http.createServer() // create创建、server服务器</span><br><span class="line">// 3. 给server对象注册请求（request）事件，监听浏览器的请求。只要有浏览器的请求，就会触发该事件</span><br><span class="line">server.on(&#x27;request&#x27;, (req, res) =&gt; &#123;</span><br><span class="line">	// 设置响应状态码</span><br><span class="line">	res.statusCode = 200</span><br><span class="line">	// 设置响应头</span><br><span class="line">	res.setHeader(&#x27;Content-Type&#x27;, &#x27;text/plain; charset=utf-8&#x27;)</span><br><span class="line">	// 设置响应体</span><br><span class="line">	res.end(&#x27;hello,欢迎访问服务器,这是服务器给你的回应&#x27;)</span><br><span class="line">&#125;)</span><br><span class="line">// 4. 设置端口，开启服务</span><br><span class="line">server.listen(3000, () =&gt; &#123;</span><br><span class="line">	console.log(&#x27;服务器启动了&#x27;)</span><br><span class="line">&#125;)</span><br><span class="line">// 代码的格式基本固定。只有 请求事件 的处理函数需要单独设置</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-Express-模块的使用"><a href="#3-Express-模块的使用" class="headerlink" title="3. Express 模块的使用"></a>3. Express 模块的使用</h3><ul>
+<li>express 是一个第三方模块，用于快速搭建服务器（替代http模块）</li>
+<li>保留了http模块的基本API，使用express的时候，也能使用http的API ,如 res.end()&#x2F;req.url</li>
+<li>提供中间件功能</li>
+<li>封装了新方法,能更方便搭建服务器</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 使用express 搭建web服务器</span><br><span class="line">// 1) 加载 express 模块</span><br><span class="line">const express = require(&#x27;express&#x27;);</span><br><span class="line">// 2) 创建 express 服务器</span><br><span class="line">const app = express();</span><br><span class="line">// 3) 开启服务器</span><br><span class="line">app.listen(3006, () =&gt; console.log(&#x27;express服务器开始工作了&#x27;));</span><br><span class="line">// 4) 监听浏览器请求并进行处理</span><br><span class="line">app.get(&#x27;GET请求的地址&#x27;, 处理函数);</span><br><span class="line">app.post(&#x27;POST请求的地址&#x27;, 处理函数);</span><br><span class="line">app.get(&#x27;/api/test&#x27;, (req, res) =&gt; &#123;</span><br><span class="line">  // res.end(&#x27;hello world，哈哈哈&#x27;); // 响应中文会乱码，必须自己加响应头</span><br><span class="line">  // res.end(JSON.stringify(&#123; status:0,message:&#x27;注册成功&#x27;&#125;)); // 只能响应字符串或者buffer类型</span><br><span class="line">  // express提供的send方法，可以解决上面的两个问题</span><br><span class="line">  res.send(&#123;status:0,message:&#x27;注册成功&#x27;&#125;)// send方法会自动设置响应头.并且会自动把对象转成JSON字符串</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h4 id="express-路由"><a href="#express-路由" class="headerlink" title="express 路由"></a>express 路由</h4><ul>
+<li>请求和处理程序的映射关系,使用路由可以降低匹配次数,提高性能 还能分类管理接口,便于维护和升级</li>
+<li>使用步骤如下 详见官网</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 1. 加载express</span><br><span class="line">const express = require(&#x27;express&#x27;);</span><br><span class="line">// 2. 创建路由对象，实则是个函数类型</span><br><span class="line">const router = express.Router();</span><br><span class="line">// 3. 写接口，把接口挂载到 router 上</span><br><span class="line">router.post(&#x27;/reguser&#x27;, (req, res) =&gt; &#123;&#125;);</span><br><span class="line">router.post(&#x27;/login&#x27;, (req, res) =&gt; &#123;&#125;);</span><br><span class="line">// 一定要导出 router</span><br><span class="line">module.exports = router;</span><br></pre></td></tr></table></figure>
+
+<p>在 index.js 中导入路由</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const express = require(&#x27;express&#x27;)</span><br><span class="line">const app = express()</span><br><span class="line">app.listen(3006, () =&gt; console.log(&#x27;启动了&#x27;))</span><br><span class="line">// 加载自定义的路由模块，注册中间件</span><br><span class="line">let loginRouter = require(&#x27;./routers/login&#x27;)</span><br><span class="line">app.use(&#x27;/api&#x27;, loginRouter)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>请求参数的语法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// get 请求参数</span></span><br><span class="line"><span class="comment">// 客户端请求: /api/list?id=2&amp;name=zs</span></span><br><span class="line"><span class="comment">// 接口写法: app.get(&#x27;api/list&#x27;,(req,res)=&gt;&#123;&#125;) // 用 req.query 接收参数</span></span><br><span class="line"><span class="comment">// 客户端请求: /api/list/id/name</span></span><br><span class="line"><span class="comment">// 接口写法: app.get(&#x27;api/list/:id/:name&#x27;,(req,res)=&gt;&#123;&#125;) // 用 req.params 接收参数</span></span><br><span class="line"><span class="comment">// 中间件: app.use(express.json()) // 设置可以接收 json 类型的参数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// post 请求参数</span></span><br><span class="line"><span class="comment">// 客户端Content-Type: application/x-www-form-urlencoded</span></span><br><span class="line"><span class="comment">// 中间件: app.use(express.urlencoded(&#123; extended: true&#125;))</span></span><br><span class="line"><span class="comment">// 接口写法: app.post(&#x27;api/list&#x27;,(req,res)=&gt;&#123;&#125;) // 用 req.body 接受参数</span></span><br><span class="line"><span class="comment">// 客户端Content-Type: multipart/form-data</span></span><br><span class="line"><span class="comment">// 加载 multer 模块: const multer = require(&#x27;multer&#x27;)</span></span><br><span class="line"><span class="comment">// 配置上传目录: const upload = multer(&#123; dest: &#x27;uploads/&#x27;&#125;)</span></span><br><span class="line"><span class="comment">// 接口写法: app.post(&#x27;api/list&#x27;,upload.single(&#x27;field&#x27;),(req,res)=&gt;&#123;&#125;) </span></span><br><span class="line"><span class="comment">// 用 req.body | req.file 接受参数</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="4-导入导出总结"><a href="#4-导入导出总结" class="headerlink" title="4. 导入导出总结"></a>4. 导入导出总结</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// commonJS 导入导出</span><br><span class="line">module.exports = &#123;&#125;  // 默认导出</span><br><span class="line">export.fn = ()=&gt; &#123;&#125;  // 按需导出</span><br><span class="line">const fn = require(&#x27;./fn.js&#x27;)  // 默认导入</span><br><span class="line">const moduleNames = [&#x27;foo.js&#x27;, &#x27;bar.js&#x27;]</span><br><span class="line">moduleNames.forEach(name =&gt; &#123;</span><br><span class="line">  require(&#x27;./&#x27; + name)</span><br><span class="line">&#125;)     	// 动态加载指定模块</span><br><span class="line">let module = &#123;</span><br><span class="line">  exports: &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">// 内在机制是将exports指向了module.exports</span><br><span class="line">let exports = module.exports</span><br><span class="line"></span><br><span class="line">// ES6 导入导出</span><br><span class="line">export default &#123;&#125;  // 默认导出</span><br><span class="line">export const fn = ()=&gt;&#123;&#125;  // 按需导出</span><br><span class="line">import fn from &#x27;./fn.js&#x27;  // 默认导入  可以任意起变量名接受</span><br><span class="line">impor &#123; fn as fn1&#125; from &#x27;./fn.js&#x27;  // 按需导入 不能直接修改导入变量名 可以用 as 关键字修改</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-中间件的概念和使用"><a href="#5-中间件的概念和使用" class="headerlink" title="5. 中间件的概念和使用"></a>5. 中间件的概念和使用</h3><ul>
+<li><p>中间件(Middleware )，特指业务流程的中间处理环节,本质就是一个函数</p>
+</li>
+<li><p>中间件函数中有四个基本参数， err、req、res、next</p>
+<ul>
+<li>如果写两个参数，那么两个参数肯定是 req 和 res</li>
+<li>如果写三个参数，那么三个参数肯定是 req, res 和 next</li>
+<li>如果写四个参数，这个中间件叫做错误处理中间件。一般放在所有接口的最后面</li>
+</ul>
+</li>
+<li><p>所有请求都可以进入使用<code>app.use()</code>注册的中间件，但要注意前缀</p>
+</li>
+<li><p>中间件分类可以分为五类</p>
+<ul>
+<li>应用级别的中间件（<em><strong>index.js 中的中间件，全局有效</strong></em> ）</li>
+<li>路由级别的中间件（<em><strong>路由文件中的中间件，只在当前路由文件中有效</strong></em>）</li>
+<li>错误处理中间件（<em><strong>四个参数都要填，一般放到最后</strong></em>）</li>
+<li>内置中间件（express自带的，比如 <code>express.urlencoded(&#123; extended: true &#125;)</code>）</li>
+<li>第三方中间件（比如multer、express-jwt、express-session、….）</li>
+<li>跨域问题可以使用中间件 cors 解决,两行代码搞定</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">安装 npm i cors</span><br><span class="line">加载 const cors = require(&#x27;cors&#x27;);</span><br><span class="line">使用 app.use(cors());   // 注意，必须把这个中间件，放到最前面。</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="6-npm-发包"><a href="#6-npm-发包" class="headerlink" title="6. npm 发包"></a>6. npm 发包</h3><ul>
+<li><ol>
+<li>注册 npm 账号 <a target="_blank" rel="noopener" href="https://www.npmjs.com/">官网</a></li>
+<li>终端切换镜像源到 npm 主站 执行 <code> npm login</code> </li>
+<li>依次输入账号 密码(不可见) 邮箱 </li>
+<li>运行 <code>npm publish</code>命令, 即可将包发布到 npm </li>
+<li>如需要删除包,运行 <code>npm unpublish 包名 --force</code>命令</li>
+</ol>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://metabo6.github.io">随时奉陪</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://metabo6.github.io/posts/f2528fa6.html">https://metabo6.github.io/posts/f2528fa6.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://metabo6.github.io" target="_blank">随时奉陪</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Node/">Node</a></div><div class="post_share"><div class="social-share" data-image="/../../../../img/React%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%BB%E7%BB%93/nodejs.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/e0f11382.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/React%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%BB%E7%BB%93/js.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">js 高级总结</div></div></a></div><div class="next-post pull-right"><a href="/posts/9a5c3c2.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/React%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%BB%E7%BB%93/echarts.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">数据可视化</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/cac7ea72.html" title="NODE常见第三方包"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/React%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%BB%E7%BB%93/npm.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-24</div><div class="title">NODE常见第三方包</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/butterfly/index.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">随时奉陪</div><div class="author-info__description">向往自由，追求自由，找寻自由</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">30</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/metabo6"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#node-%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text">node 基础学习总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text">1. 概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%A8%A1%E5%9D%97%E5%8C%96%E5%8F%8A%E5%88%86%E7%B1%BB"><span class="toc-number">1.2.</span> <span class="toc-text">2. 模块化及分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97"><span class="toc-number">1.3.</span> <span class="toc-text">3. 内置模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#path-%E6%A8%A1%E5%9D%97"><span class="toc-number">1.3.1.</span> <span class="toc-text">path 模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fs-%E6%A8%A1%E5%9D%97"><span class="toc-number">1.3.2.</span> <span class="toc-text">fs 模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#querystring-%E6%A8%A1%E5%9D%97"><span class="toc-number">1.3.3.</span> <span class="toc-text">querystring 模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#http-%E6%A8%A1%E5%9D%97"><span class="toc-number">1.3.4.</span> <span class="toc-text">http 模块</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Express-%E6%A8%A1%E5%9D%97%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.4.</span> <span class="toc-text">3. Express 模块的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#express-%E8%B7%AF%E7%94%B1"><span class="toc-number">1.4.1.</span> <span class="toc-text">express 路由</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E6%80%BB%E7%BB%93"><span class="toc-number">1.5.</span> <span class="toc-text">4. 导入导出总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E6%A6%82%E5%BF%B5%E5%92%8C%E4%BD%BF%E7%94%A8"><span class="toc-number">1.6.</span> <span class="toc-text">5. 中间件的概念和使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-npm-%E5%8F%91%E5%8C%85"><span class="toc-number">1.7.</span> <span class="toc-text">6. npm 发包</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/a5ae354f.html" title="数组、字符串常用方法"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/React%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%BB%E7%BB%93/js.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="数组、字符串常用方法"/></a><div class="content"><a class="title" href="/posts/a5ae354f.html" title="数组、字符串常用方法">数组、字符串常用方法</a><time datetime="2022-11-24T02:24:11.000Z" title="发表于 2022-11-24 10:24:11">2022-11-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/b0de96e1.html" title="CSS 总结"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/React%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%BB%E7%BB%93/css.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CSS 总结"/></a><div class="content"><a class="title" href="/posts/b0de96e1.html" title="CSS 总结">CSS 总结</a><time datetime="2022-11-24T02:22:36.000Z" title="发表于 2022-11-24 10:22:36">2022-11-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/f1991798.html" title="Git 总结"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/React%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%BB%E7%BB%93/git.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Git 总结"/></a><div class="content"><a class="title" href="/posts/f1991798.html" title="Git 总结">Git 总结</a><time datetime="2022-11-24T02:22:36.000Z" title="发表于 2022-11-24 10:22:36">2022-11-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/50b39724.html" title="HTML 总结"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/React%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%BB%E7%BB%93/HTML.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="HTML 总结"/></a><div class="content"><a class="title" href="/posts/50b39724.html" title="HTML 总结">HTML 总结</a><time datetime="2022-11-24T02:22:36.000Z" title="发表于 2022-11-24 10:22:36">2022-11-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/588ad959.html" title="JS 基础总结"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/React%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%BB%E7%BB%93/js.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JS 基础总结"/></a><div class="content"><a class="title" href="/posts/588ad959.html" title="JS 基础总结">JS 基础总结</a><time datetime="2022-11-24T02:22:36.000Z" title="发表于 2022-11-24 10:22:36">2022-11-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 随时奉陪</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script src="/js/weather.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

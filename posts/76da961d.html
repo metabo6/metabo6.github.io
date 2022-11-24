@@ -1,0 +1,458 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>uni-app开发小程序漫谈 | 随时奉陪</title><meta name="author" content="随时奉陪"><meta name="copyright" content="随时奉陪"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="uni-app介绍uni-app 是一个使用 Vue.js 开发所有前端应用的框架，开发者编写一套代码，可发布到 iOS、Android、H5、以及各种小程序（微信&amp;#x2F;支付宝&amp;#x2F;百度&amp;#x2F;头条&amp;#x2F;QQ&amp;#x2F;钉钉）等多个平台。 去官网     搭建 uni-app"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://metabo6.github.io/posts/76da961d"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'uni-app开发小程序漫谈',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-10-08 15:01:58'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/butterfly/index.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">30</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-tags"></i><span> 仿 win10</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-folder-open"></i><span> 学习资料</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-fish"></i><span> 摸鱼</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-tools"></i><span> 工具</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-anchor"></i><span> 动画</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-place-of-worship"></i><span> 摸鱼大军</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/../../../../img/uni-app%E5%BC%80%E5%8F%91%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%BC%AB%E8%B0%88/image-20211119204512838.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">随时奉陪</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-tags"></i><span> 仿 win10</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-folder-open"></i><span> 学习资料</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-fish"></i><span> 摸鱼</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-tools"></i><span> 工具</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-anchor"></i><span> 动画</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-place-of-worship"></i><span> 摸鱼大军</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">uni-app开发小程序漫谈</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-10-08T03:35:07.000Z" title="发表于 2022-10-08 11:35:07">2022-10-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-08T07:01:58.725Z" title="更新于 2022-10-08 15:01:58">2022-10-08</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="uni-app开发小程序漫谈"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="uni-app介绍"><a href="#uni-app介绍" class="headerlink" title="uni-app介绍"></a>uni-app介绍</h2><p><code>uni-app</code> 是一个<strong>使用 <a target="_blank" rel="noopener" href="https://vuejs.org/">Vue.js</a> 开发所有前端应用的框架</strong>，开发者编写一套代码，可发布到 iOS、Android、H5、以及各种小程序（微信&#x2F;支付宝&#x2F;百度&#x2F;头条&#x2F;QQ&#x2F;钉钉）等多个平台。</p>
+<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.io/">去官网</a></p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../../img/uni-app开发小程序漫谈/image-20211119204512838.png" alt="uni-app" style="zoom: 50%;" />
+
+
+
+<h2 id="搭建-uni-app-项目"><a href="#搭建-uni-app-项目" class="headerlink" title="搭建 uni-app 项目"></a>搭建 uni-app 项目</h2><p>两种搭建项目的方式</p>
+<ol>
+<li><p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.io/quickstart?id=_1-%E9%80%9A%E8%BF%87-hbuilderx-%E5%8F%AF%E8%A7%86%E5%8C%96%E7%95%8C%E9%9D%A2">通过 HBuilderX 可视化界面</a></p>
+<p>可视化的方式比较简单，HBuilderX 内置相关环境，开箱即用，无需配置 nodejs。</p>
+<p>开始之前，开发者需先下载安装 HBuilderX ，<a target="_blank" rel="noopener" href="http://www.dcloud.io/hbuilderx.html">官方 IDE 下载地址</a></p>
+</li>
+</ol>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/uni-app%E5%BC%80%E5%8F%91%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%BC%AB%E8%B0%88/image-20220211091354049.png"></p>
+<ol start="2">
+<li><p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.io/quickstart?id=_2-%E9%80%9A%E8%BF%87vue-cli%E5%91%BD%E4%BB%A4%E8%A1%8C">通过vue-cli命令行</a></p>
+<p>也可以使用 <code>cli</code> 脚手架，可以通过 <code>vue-cli</code> 创建 <code>uni-app</code> 项目。</p>
+<p><strong>步骤</strong></p>
+<ol>
+<li>全局安装 vue-cli：<code>npm install -g @vue/cli</code></li>
+<li>执行 cli 命令：<code>vue create -p dcloudio/uni-preset-vue heima-ugo</code></li>
+<li>选择<strong>默认模版</strong></li>
+</ol>
+</li>
+</ol>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../../img/uni-app开发小程序漫谈/image-20211111123902777.png" style="zoom: 80%;" />
+
+<p>​			4. 运行项目：<code>npm run dev:mp-weixin</code>，成功后会自动打包生成小程序项目代码</p>
+<p>​				此处除了运行微信小程序，还可以运行其他平台小程序</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>平台</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>h5</td>
+<td>H5</td>
+</tr>
+<tr>
+<td>mp-alipay</td>
+<td>支付宝小程序</td>
+</tr>
+<tr>
+<td>mp-baidu</td>
+<td>百度小程序</td>
+</tr>
+<tr>
+<td><strong>mp-weixin</strong></td>
+<td>微信小程序</td>
+</tr>
+<tr>
+<td>mp-toutiao</td>
+<td>字节跳动小程序</td>
+</tr>
+<tr>
+<td>mp-qq</td>
+<td>qq 小程序</td>
+</tr>
+</tbody></table>
+<p>​				5. 打开小程序开发者工具，<strong>导入上一步生成的小程序项目代码</strong>，填写 appid</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../../img/uni-app开发小程序漫谈/image-20211111125618478.png" style="zoom: 67%;" />
+
+
+
+<h2 id="uni-app-开发说明和注意事项"><a href="#uni-app-开发说明和注意事项" class="headerlink" title="uni-app 开发说明和注意事项"></a>uni-app 开发说明和注意事项</h2><h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><p>一个uni-app工程，默认包含如下目录及文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">┌─components           uni-app组件目录</span><br><span class="line">│  └─comp-a.vue        可复用的a组件</span><br><span class="line">├─pages                业务页面文件存放的目录</span><br><span class="line">│  ├─index</span><br><span class="line">│  │  └─index.vue      index页面</span><br><span class="line">├─static      存放应用引用静态资源（如图片、视频等）的目录，注意：静态资源只能存放于此</span><br><span class="line">├─App.vue              应用配置，用来配置App全局样式以及监听 应用生命周期</span><br><span class="line">├─main.js              Vue初始化入口文件</span><br><span class="line">├─manifest.json        配置应用名称、appid、logo、版本等打包信息</span><br><span class="line">└─pages.json           配置页面路由、导航条、选项卡等页面类信息</span><br></pre></td></tr></table></figure>
+
+<h3 id="开发规范"><a href="#开发规范" class="headerlink" title="开发规范"></a><a target="_blank" rel="noopener" href="https://uniapp.dcloud.io/frame">开发规范</a></h3><p>开发模式：<strong>vue + 原生小程序部分用法</strong></p>
+<p>为了实现多端兼容，综合考虑编译速度、运行性能等因素，<code>uni-app</code> 约定了如下开发规范：</p>
+<ul>
+<li>页面文件遵循 <a target="_blank" rel="noopener" href="https://vue-loader.vuejs.org/zh/spec.html">Vue 单文件组件 (SFC) 规范</a></li>
+<li>组件标签靠近小程序规范，详见<a target="_blank" rel="noopener" href="https://uniapp.dcloud.io/component/README">uni-app 组件规范</a></li>
+<li>接口能力（JS API）靠近微信小程序规范，但需将前缀 <code>wx</code> 替换为 <code>uni</code>，详见<a target="_blank" rel="noopener" href="https://uniapp.dcloud.io/api/README">uni-app接口规范</a></li>
+<li>数据绑定及事件处理同 <code>Vue.js</code> 规范，同时补充了 App 及页面的生命周期</li>
+<li>为兼容多端运行，建议使用 flex 布局进行开发</li>
+</ul>
+<h3 id="uni-app-生命周期"><a href="#uni-app-生命周期" class="headerlink" title="uni-app 生命周期"></a>uni-app 生命周期</h3><p>uni-app 框架的生命周期结合了 vue 和微信小程序的生命周期</p>
+<p>应用：App.vue  onLanch</p>
+<p>页面: onLoad，在该阶段发送请求</p>
+<p>组件： mounted</p>
+<h3 id="分包配置"><a href="#分包配置" class="headerlink" title="分包配置"></a>分包配置</h3><blockquote>
+<p>因小程序有体积和资源加载限制，小程序平台提供分包方式，优化小程序下载和启动速度。</p>
+</blockquote>
+<p>在小程序启动时，<strong>默认会下载主包并启动主包内页面</strong>，当用户进入分包内某个页面时，会把对应分包自动下载下来，下载完成后再进行展示。此时终端界面会有等待提示。</p>
+<ul>
+<li>所谓的<strong>主包</strong>（1个），即放置默认<strong>启动页面&#x2F;TabBar 页面</strong>，以及一些所有分包都需用到<strong>公共资源</strong>&#x2F;JS 脚本</li>
+<li><strong>分包</strong>（多个）默认不需要加载页面资源</li>
+</ul>
+<h4 id="配置步骤"><a href="#配置步骤" class="headerlink" title="配置步骤"></a><strong>配置步骤</strong></h4><ol>
+<li>分拆页面 &#x3D;&gt; 拆分非标签页为单独包（分包）</li>
+<li>新建分包目录 ，和 pages 目录同级</li>
+<li>在<code>pages.json</code>中配置<code>subPackages</code></li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;pages&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">  <span class="comment">// pages 数组中第一项表示应用启动页</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pages/index/index&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;style&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;enablePullDownRefresh&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line"><span class="comment">// 分包</span></span><br><span class="line"><span class="attr">&quot;subPackages&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="comment">// 子包的根目录</span></span><br><span class="line">    <span class="attr">&quot;root&quot;</span><span class="punctuation">:</span> <span class="string">&quot;packone&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="comment">// 子包由哪些页面组成</span></span><br><span class="line">    <span class="attr">&quot;pages&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;goods/index&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;style&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;navigationBarTitleText&quot;</span><span class="punctuation">:</span> <span class="string">&quot;详情&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;list/index&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>重新执行<code>npm run dev:mp-weixin</code>，微信开发者工具中，查看分包大小</li>
+</ol>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="../../../../img/uni-app开发小程序漫谈/image-20211111182845191.png" style="zoom: 80%;" />
+
+<p>​	<strong>注意</strong>：</p>
+<ol>
+<li>微信小程序微信小程序每个分包的大小是2M，总体积一共不能超过20M</li>
+<li><code>subPackages</code> 里的 pages 的路径是 <code>root</code> 下的相对路径，不是全路径。</li>
+</ol>
+<h2 id="常用-API"><a href="#常用-API" class="headerlink" title="常用 API"></a>常用 API</h2><blockquote>
+<p>uni-app下使用小程序的API是以<a target="_blank" rel="noopener" href="https://uniapp.dcloud.io/api/system/info?id=getsysteminfosync">uni.api</a>（替代 wx.api ）</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/api/">详见官网</a></p>
+<h3 id="获取系统信息"><a href="#获取系统信息" class="headerlink" title="获取系统信息"></a>获取系统信息</h3><p>uni-app 提供了异步( <code>uni.getSystemInfo</code> )和同步( <code>uni.getSystemInfoSync</code> )的2个 API 获取系统信息。</p>
+<ul>
+<li><code>uni.getSystemInfoSync().windowHeight</code>：获取屏幕可视区高度</li>
+</ul>
+<h3 id="tabBar-控制"><a href="#tabBar-控制" class="headerlink" title="tabBar 控制"></a>tabBar 控制</h3><ul>
+<li><code>uni.hideTabBar() / uni.showTabBar() </code>：隐藏&#x2F;显示底部 tabBar</li>
+</ul>
+<h3 id="数据请求"><a href="#数据请求" class="headerlink" title="数据请求"></a>数据请求</h3><p>uni.request 基本方法代替了 wx.request 方法，<a target="_blank" rel="noopener" href="https://uniapp.dcloud.io/api/request/request?id=request">官方文档</a></p>
+<p>uni.request 是异步的方法。如果不传入 success、fail、complete 等 callback 参数，将以 Promise 返回数据。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">onLoad</span>(<span class="params"></span>) &#123;</span><br><span class="line">  uni.<span class="title function_">request</span>(&#123;</span><br><span class="line">    <span class="attr">url</span>: <span class="string">&quot;xxx&quot;</span></span><br><span class="line">  &#125;).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;结果：&quot;</span>, res);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>开发中通常也会对请求模块进行封装，以下为较简单的封装示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * uni.request() 封装</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> 请求参数</span></span><br><span class="line"><span class="comment"> * uni.showLoading 加载效果</span></span><br><span class="line"><span class="comment"> * uni.hideLoading() 隐藏加载效果，配套使用</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">BASE_URL</span> = <span class="string">&quot;https://uinav.com&quot;</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">request</span> (&#123; url, header = &#123;&#125;, method, data &#125;) &#123;</span><br><span class="line">  uni.<span class="title function_">showLoading</span>(&#123;</span><br><span class="line">    <span class="attr">title</span>: <span class="string">&#x27;加载中...&#x27;</span></span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="comment">// 处理token</span></span><br><span class="line">  <span class="keyword">let</span> token = uni.<span class="title function_">getStorageSync</span>(<span class="string">&#x27;token&#x27;</span>)</span><br><span class="line">  <span class="keyword">if</span> (token) &#123;</span><br><span class="line">    header.<span class="property">Authorization</span> = token</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> [error, res] = <span class="keyword">await</span> uni.<span class="title function_">request</span>(&#123;</span><br><span class="line">    <span class="attr">url</span>: <span class="variable constant_">BASE_URL</span> + url,</span><br><span class="line">    header,</span><br><span class="line">    method,</span><br><span class="line">    data</span><br><span class="line">  &#125;)</span><br><span class="line">  uni.<span class="title function_">hideLoading</span>()</span><br><span class="line">  <span class="keyword">if</span> (!error) &#123;</span><br><span class="line">    <span class="keyword">const</span> _data = &#123;</span><br><span class="line">      <span class="attr">msg</span>: res.<span class="property">data</span>.<span class="property">meta</span>,</span><br><span class="line">      <span class="attr">data</span>: res.<span class="property">data</span>.<span class="property">message</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Error</span>(error)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// vue 插件形式 定义插件，后续组件中可以通过 this 来访问</span></span><br><span class="line"><span class="keyword">const</span> requestPlugin = &#123;</span><br><span class="line">  <span class="title function_">install</span>(<span class="params">Vue</span>) &#123;</span><br><span class="line">    <span class="title class_">Vue</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">request</span> = request</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> requestPlugin</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">MyRequest</span> <span class="keyword">from</span> <span class="string">&#x27;@/utils/request&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 入口文件 注册插件</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">MyRequest</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="下拉刷新-配置"><a href="#下拉刷新-配置" class="headerlink" title="下拉刷新-配置"></a>下拉刷新-配置</h3><p>uni-app 封装了相关 API</p>
+<ul>
+<li>enablePullDownRefresh：开启配置</li>
+<li>uni.stoppulldownrefresh()：终止状态</li>
+</ul>
+<p><strong>配置步骤</strong></p>
+<ol>
+<li>在<code>pages.json</code>文件中 pages 字段：配置 <strong>首页</strong> 的下拉刷新效果</li>
+<li>style(window) 属性中：<code>&quot;enablePullDownRefresh&quot;: true</code></li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pages/index/index&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;style&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">     <span class="attr">&quot;enablePullDownRefresh&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span> <span class="comment">// 允许下拉</span></span><br><span class="line">     <span class="attr">&quot;backgroundColor&quot;</span><span class="punctuation">:</span> <span class="string">&quot;#fd1800&quot;</span> <span class="comment">// 下拉区域背景色</span></span><br><span class="line">   <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>获取完相关数据后调用 <code>uni.stopPullDownRefresh()</code> 方法关闭</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">onPullDownRefresh</span>(<span class="params"></span>) &#123;</span><br><span class="line">   <span class="title class_">Promise</span>.<span class="title function_">all</span>([<span class="variable language_">this</span>.<span class="title function_">getSwiper</span>(), <span class="variable language_">this</span>.<span class="title function_">getNavs</span>())</span><br><span class="line">   .<span class="title function_">then</span>(</span><br><span class="line">     <span class="function">() =&gt;</span> &#123;</span><br><span class="line">       <span class="comment">// 执行完停止loading</span></span><br><span class="line">       uni.<span class="title function_">stopPullDownRefresh</span>()</span><br><span class="line">     &#125;</span><br><span class="line">   )</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<ul>
+<li>模拟器中：用户手动触发，会自动关闭 loading 效果</li>
+<li>真机测试：需要调用 uni.stopPullDownRefresh() 方法关闭</li>
+</ul>
+<h3 id="页面滚动"><a href="#页面滚动" class="headerlink" title="页面滚动"></a>页面滚动</h3><p>将页面滚动到目标位置。<a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/api/ui/scroll.html#pagescrollto">官网介绍</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uni.<span class="title function_">pageScrollTo</span>(&#123; <span class="attr">scrollTop</span>: <span class="number">0</span> &#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>监听页面滚动条</strong>： onPageScroll()</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 和 data 平级位置</span></span><br><span class="line"><span class="title function_">onPageScroll</span>(<span class="params">e</span>) &#123;</span><br><span class="line">  <span class="comment">// console.log(&#x27;页面滚动啦&#x27;)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>页面滚动到底</strong>：onReachBottom()，常用于下拉下一页数据。</p>
+<p>此处可在 pages.json 里定义具体页面底部的触发距离 <a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/collocation/pages#globalstyle">onReachBottomDistance</a>，比如设为50，那么滚动页面到距离底部 50px 时，就会触发 onReachBottom 事件。</p>
+<p>此外，在 scroll-view 组件中，滚动到底会触发 scrolltolower() 事件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 和 data 平级位置</span></span><br><span class="line"><span class="title function_">onPageScroll</span>(<span class="params">e</span>) &#123;</span><br><span class="line">  <span class="comment">// console.log(&#x27;页面滚动到底啦&#x27;)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="数据缓存"><a href="#数据缓存" class="headerlink" title="数据缓存"></a>数据缓存</h3><ul>
+<li>uni.setStorage(OBJECT)：异步存储</li>
+<li>uni.setStorageSync(KEY,DATA)：同步存储</li>
+<li>uni.getStorage(OBJECT)：异步获取缓存数据</li>
+<li>uni.getStorageSync(KEY)：同步获取缓存数据</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">uni.<span class="title function_">getStorageSync</span>(<span class="string">&quot;history&quot;</span>) <span class="comment">// 同步获取缓存数据</span></span><br><span class="line">uni.<span class="title function_">removeStorageSync</span>(<span class="string">&quot;history&quot;</span>) <span class="comment">// 同步移除缓存数据</span></span><br><span class="line">uni.<span class="title function_">setStorageSync</span>( <span class="string">&quot;history&quot;</span>,<span class="variable language_">this</span>.<span class="property">history</span> ) <span class="comment">// 同步存储数据</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="open-type-有效值"><a href="#open-type-有效值" class="headerlink" title="open-type 有效值"></a>open-type 有效值</h3><table>
+<thead>
+<tr>
+<th><strong>值</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>contact</td>
+<td>打开客服会话，如果用户在会话中点击消息卡片后返回应用，可以从 @contact 回调中获得具体信息</td>
+</tr>
+<tr>
+<td>share</td>
+<td>触发用户转发</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">open-type</span>=<span class="string">&quot;contact&quot;</span> <span class="attr">class</span>=<span class="string">&quot;icon-handset&quot;</span>&gt;</span>联系客服<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;item icon-arrow&quot;</span> <span class="attr">open-type</span>=<span class="string">&quot;share&quot;</span>&gt;</span>分享优购<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="收货地址"><a href="#收货地址" class="headerlink" title="收货地址"></a>收货地址</h3><blockquote>
+<p>选择和编辑收货地址的页面，由微信客户端提供</p>
+</blockquote>
+<p>通过 <code>uni.chooseAddress</code> API 获取当前微信账号的收货地址</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">uni.<span class="title function_">chooseAddress</span>(&#123;</span><br><span class="line">  <span class="title function_">success</span>(<span class="params">res</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(res)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="拨打电话"><a href="#拨打电话" class="headerlink" title="拨打电话"></a>拨打电话</h3><p>通过 <code>uni.makePhoneCall()</code> API 来拨打电话</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">uni.<span class="title function_">makePhoneCall</span>(&#123;</span><br><span class="line">	<span class="attr">phoneNumber</span>: <span class="string">&#x27;10086&#x27;</span> <span class="comment">//仅为示例</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="获取用户信息"><a href="#获取用户信息" class="headerlink" title="获取用户信息"></a>获取用户信息</h3><p>通过 <code>uni.getUserProfile()</code> API 获取用户信息。每次请求都会弹出授权窗口，用户同意后返回 userInfo。<code>desc</code> 属性必须填写</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wx.<span class="title function_">getUserProfile</span>(&#123;</span><br><span class="line">   <span class="attr">desc</span>: <span class="string">&#x27;用于完善用户资料&#x27;</span>, <span class="comment">// 声明获取用户个人信息后的用途，后续会展示在弹窗中</span></span><br><span class="line">   <span class="attr">success</span>: <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">		<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27; 当前用户信息 &#x27;</span>,res)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h3><p>一般分为两种</p>
+<ol>
+<li>直接在前端调用微信接口登录，一般需要 code( api 获取)，AppID(小程序ID)，AppSecret(小程序密钥)访问微信服务器，成功返回：1. openid是用户标识  2. session_key是解密用的（UnionID解密等），此方法非常不安全，不建议使用</li>
+<li>调用自己的服务器接口（会对接微信服务器）</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>code</td>
+<td>临时登录凭证，有效期五分钟</td>
+</tr>
+<tr>
+<td>session_key</td>
+<td>会话密钥，服务端通过 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/api/open-api/login/code2Session.html">code2Session</a> 获取</td>
+</tr>
+<tr>
+<td>openId</td>
+<td>用户唯一标识, 永远不变, 服务端通过 code 获取</td>
+</tr>
+<tr>
+<td>appSecret</td>
+<td>小程序的 app secret, 可以和 code, appId 一起换取 session_key</td>
+</tr>
+<tr>
+<td>appId</td>
+<td>小程序唯一标识</td>
+</tr>
+<tr>
+<td>signature</td>
+<td>用于校验用户信息是否无篡改</td>
+</tr>
+<tr>
+<td>iv</td>
+<td>加密算法的初始向量</td>
+</tr>
+<tr>
+<td>encryptedData</td>
+<td>包含敏感信息的用户信息, 是加密的</td>
+</tr>
+<tr>
+<td>rawData</td>
+<td>不包括敏感信息的原始数据字符串，用于计算签名</td>
+</tr>
+</tbody></table>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> getUserInfo () &#123;</span><br><span class="line">  <span class="keyword">const</span> [error, user] = <span class="keyword">await</span> uni.<span class="title function_">getUserProfile</span>(&#123; <span class="attr">desc</span>: <span class="string">&#x27;获取微信用户信息&#x27;</span> &#125;)</span><br><span class="line">  <span class="comment">// 请求失败，err 是失败对象， 请求成功，err为 null</span></span><br><span class="line">  <span class="keyword">if</span> (!error) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">login</span>(user)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line"><span class="comment">// 调用接口登录</span></span><br><span class="line"><span class="keyword">async</span> <span class="title function_">login</span>(<span class="params">user</span>) &#123;</span><br><span class="line">  <span class="comment">// 登录所需参数</span></span><br><span class="line">  <span class="keyword">const</span> &#123; encryptedData, iv, rawData, signature &#125; = user</span><br><span class="line">  <span class="comment">// 微信用户登录凭证 =》 code</span></span><br><span class="line">  <span class="keyword">const</span> [err, data] = <span class="keyword">await</span> uni.<span class="title function_">login</span>(&#123;</span><br><span class="line">       <span class="attr">provider</span>: <span class="string">&#x27;weixin&#x27;</span>,</span><br><span class="line">       onlyAuthorize：<span class="literal">true</span>,</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">if</span> (!err) &#123;</span><br><span class="line">    <span class="keyword">let</span> res = <span class="keyword">await</span> <span class="variable language_">this</span>.<span class="title function_">request</span>(&#123;</span><br><span class="line">      <span class="attr">url</span>: <span class="string">&quot;/api/public/v1/users/wxlogin&quot;</span>,</span><br><span class="line">      <span class="attr">method</span>: <span class="string">&quot;post&quot;</span>,</span><br><span class="line">      <span class="attr">data</span>: &#123;</span><br><span class="line">        encryptedData,</span><br><span class="line">        iv,</span><br><span class="line">        rawData,</span><br><span class="line">        signature,</span><br><span class="line">        <span class="attr">code</span>: data.<span class="property">code</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>登陆失败</strong>：一般是因为<strong>当前开发者 AppID 和服务器端使用的不一致</strong>造成，工作中使用公司提供的 </p>
+<p>AppID 即可解决</p>
+<p>**<code>Error: Illegal Buffer</code>**报错：可能是 session_key 没有及时更新，建议提前调用 uni.login()</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> onLoad () &#123;</span><br><span class="line"> <span class="comment">// 页面加载时调用，获取 code</span></span><br><span class="line">  <span class="keyword">const</span> [error, data] = <span class="keyword">await</span> uni.<span class="title function_">login</span>()</span><br><span class="line">  <span class="keyword">if</span> (!error) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data)</span><br><span class="line">    <span class="comment">// code 参数存储到 this，后续使用访问 this.code 即可</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">code</span> = data.<span class="property">code</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="微信支付"><a href="#微信支付" class="headerlink" title="微信支付"></a>微信支付</h3><p><a target="_blank" rel="noopener" href="https://pay.weixin.qq.com/wiki/doc/api/wxa/wxa_api.php?chapter=7_4&index=3">支付业务流程</a></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/uni-app%E5%BC%80%E5%8F%91%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%BC%AB%E8%B0%88/image-20211121165525571.png"></p>
+<p><strong>前端：主要处理第三步，获取支付信息，调起支付窗口</strong></p>
+<ol>
+<li>使用 <strong><code>uni.login</code></strong> 获取临时登录凭证 code ，发送到后端获取 openId &#x3D;&gt; 微信登录</li>
+<li>将 <strong><code>openId</code></strong> 以及相应需要的商品信息发送到后端，换取服务端进行支付的签名等信息  &#x3D;&gt; 创建订单</li>
+<li>接收返回的信息（必须要包含发起微信支付 <strong><code>uni.requestPayment的参数</code></strong> ），发起微信支付</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/api/plugins/payment.html#requestpayment">详见官网</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">uni.<span class="title function_">requestPayment</span>(&#123;</span><br><span class="line">    <span class="string">&quot;provider&quot;</span>: <span class="string">&quot;wxpay&quot;</span>, </span><br><span class="line">    <span class="string">&quot;orderInfo&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;appid&quot;</span>: <span class="string">&quot;wx499********7c70e&quot;</span>,  <span class="comment">// 微信开放平台 - 应用 - AppId，注意和微信小程序、公众号 AppId 可能不一致</span></span><br><span class="line">        <span class="string">&quot;noncestr&quot;</span>: <span class="string">&quot;c5sEwbaNPiXAF3iv&quot;</span>, <span class="comment">// 随机字符串</span></span><br><span class="line">        <span class="string">&quot;package&quot;</span>: <span class="string">&quot;Sign=WXPay&quot;</span>,        <span class="comment">// 固定值</span></span><br><span class="line">        <span class="string">&quot;partnerid&quot;</span>: <span class="string">&quot;148*****52&quot;</span>,      <span class="comment">// 微信支付商户号</span></span><br><span class="line">        <span class="string">&quot;prepayid&quot;</span>: <span class="string">&quot;wx202254********************fbe90000&quot;</span>, <span class="comment">// 统一下单订单号 </span></span><br><span class="line">        <span class="string">&quot;timestamp&quot;</span>: <span class="number">1597935292</span>,        <span class="comment">// 时间戳（单位：秒）</span></span><br><span class="line">        <span class="string">&quot;sign&quot;</span>: <span class="string">&quot;A842B45937F6EFF60DEC7A2EAA52D5A0&quot;</span> <span class="comment">// 签名，这里用的 MD5/RSA 签名</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">success</span>(<span class="params">res</span>) &#123;&#125;,</span><br><span class="line">    <span class="title function_">fail</span>(<span class="params">e</span>) &#123;&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="项目打包-上线"><a href="#项目打包-上线" class="headerlink" title="项目打包-上线"></a>项目打包-上线</h2><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
+<li><p>打包</p>
+<ul>
+<li><p>hbuildX：发布</p>
+</li>
+<li><p>vue-cli: 执行上线打包：<code>npm run build:mp-weixin</code></p>
+</li>
+</ul>
+</li>
+<li><p>到微信开发者工具，导入打包生成的 build&#x2F;mp-weixin 生产代码</p>
+</li>
+<li><p>导入成功之后点击 &#x3D;&gt; <strong>上传</strong> &#x3D;&gt; 发布体验版本 &#x3D;&gt;  通过小程序的后台查看管理版本</p>
+</li>
+</ol>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/uni-app%E5%BC%80%E5%8F%91%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%BC%AB%E8%B0%88/image-20210224171814056.png"></p>
+<ol start="4">
+<li>体验版本 &#x3D;&gt; 经过测试 &#x3D;&gt; 测试通过 &#x3D;&gt; 提交审核 &#x3D;&gt; 经过 TX 审核通过才能发布线上版本</li>
+</ol>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/uni-app%E5%BC%80%E5%8F%91%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%BC%AB%E8%B0%88/image-20210224172845066.png"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://metabo6.github.io">随时奉陪</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://metabo6.github.io/posts/76da961d.html">https://metabo6.github.io/posts/76da961d.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://metabo6.github.io" target="_blank">随时奉陪</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/WeChat/">WeChat</a></div><div class="post_share"><div class="social-share" data-image="/img/butterfly/4.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/cb2581ba.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/%E8%A7%A3%E5%86%B3%E8%B0%B7%E6%AD%8C%E7%BF%BB%E8%AF%91%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/2022-10-12_17-23-31.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">解决谷歌翻译无法使用的问题</div></div></a></div><div class="next-post pull-right"><a href="/posts/5d943506.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/butterfly/2055080.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">初体验小程序(二)</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/7b191882.html" title="微信小程序初体验(一)"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%88%9D%E4%BD%93%E9%AA%8C/img-1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-07</div><div class="title">微信小程序初体验(一)</div></div></a></div><div><a href="/posts/5d943506.html" title="初体验小程序(二)"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/butterfly/2055080.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-07</div><div class="title">初体验小程序(二)</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/butterfly/index.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">随时奉陪</div><div class="author-info__description">向往自由，追求自由，找寻自由</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">30</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/metabo6"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#uni-app%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">uni-app介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%AD%E5%BB%BA-uni-app-%E9%A1%B9%E7%9B%AE"><span class="toc-number">2.</span> <span class="toc-text">搭建 uni-app 项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#uni-app-%E5%BC%80%E5%8F%91%E8%AF%B4%E6%98%8E%E5%92%8C%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">3.</span> <span class="toc-text">uni-app 开发说明和注意事项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">3.1.</span> <span class="toc-text">目录结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83"><span class="toc-number">3.2.</span> <span class="toc-text">开发规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#uni-app-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">3.3.</span> <span class="toc-text">uni-app 生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%8C%85%E9%85%8D%E7%BD%AE"><span class="toc-number">3.4.</span> <span class="toc-text">分包配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%AD%A5%E9%AA%A4"><span class="toc-number">3.4.1.</span> <span class="toc-text">配置步骤</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8-API"><span class="toc-number">4.</span> <span class="toc-text">常用 API</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF"><span class="toc-number">4.1.</span> <span class="toc-text">获取系统信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tabBar-%E6%8E%A7%E5%88%B6"><span class="toc-number">4.2.</span> <span class="toc-text">tabBar 控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%AF%B7%E6%B1%82"><span class="toc-number">4.3.</span> <span class="toc-text">数据请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E6%8B%89%E5%88%B7%E6%96%B0-%E9%85%8D%E7%BD%AE"><span class="toc-number">4.4.</span> <span class="toc-text">下拉刷新-配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B5%E9%9D%A2%E6%BB%9A%E5%8A%A8"><span class="toc-number">4.5.</span> <span class="toc-text">页面滚动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BC%93%E5%AD%98"><span class="toc-number">4.6.</span> <span class="toc-text">数据缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#open-type-%E6%9C%89%E6%95%88%E5%80%BC"><span class="toc-number">4.7.</span> <span class="toc-text">open-type 有效值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B6%E8%B4%A7%E5%9C%B0%E5%9D%80"><span class="toc-number">4.8.</span> <span class="toc-text">收货地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%A8%E6%89%93%E7%94%B5%E8%AF%9D"><span class="toc-number">4.9.</span> <span class="toc-text">拨打电话</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="toc-number">4.10.</span> <span class="toc-text">获取用户信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%99%BB%E5%BD%95"><span class="toc-number">4.11.</span> <span class="toc-text">登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98"><span class="toc-number">4.12.</span> <span class="toc-text">微信支付</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85-%E4%B8%8A%E7%BA%BF"><span class="toc-number">5.</span> <span class="toc-text">项目打包-上线</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4"><span class="toc-number">5.1.</span> <span class="toc-text">步骤</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/a5ae354f.html" title="数组、字符串常用方法"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/React%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%BB%E7%BB%93/js.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="数组、字符串常用方法"/></a><div class="content"><a class="title" href="/posts/a5ae354f.html" title="数组、字符串常用方法">数组、字符串常用方法</a><time datetime="2022-11-24T02:24:11.000Z" title="发表于 2022-11-24 10:24:11">2022-11-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/b0de96e1.html" title="CSS 总结"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/React%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%BB%E7%BB%93/css.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CSS 总结"/></a><div class="content"><a class="title" href="/posts/b0de96e1.html" title="CSS 总结">CSS 总结</a><time datetime="2022-11-24T02:22:36.000Z" title="发表于 2022-11-24 10:22:36">2022-11-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/f1991798.html" title="Git 总结"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/React%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%BB%E7%BB%93/git.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Git 总结"/></a><div class="content"><a class="title" href="/posts/f1991798.html" title="Git 总结">Git 总结</a><time datetime="2022-11-24T02:22:36.000Z" title="发表于 2022-11-24 10:22:36">2022-11-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/50b39724.html" title="HTML 总结"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/React%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%BB%E7%BB%93/HTML.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="HTML 总结"/></a><div class="content"><a class="title" href="/posts/50b39724.html" title="HTML 总结">HTML 总结</a><time datetime="2022-11-24T02:22:36.000Z" title="发表于 2022-11-24 10:22:36">2022-11-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/588ad959.html" title="JS 基础总结"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/React%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%BB%E7%BB%93/js.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JS 基础总结"/></a><div class="content"><a class="title" href="/posts/588ad959.html" title="JS 基础总结">JS 基础总结</a><time datetime="2022-11-24T02:22:36.000Z" title="发表于 2022-11-24 10:22:36">2022-11-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 随时奉陪</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script src="/js/weather.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

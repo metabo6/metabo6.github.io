@@ -1,0 +1,291 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Git 总结 | 随时奉陪</title><meta name="author" content="随时奉陪"><meta name="copyright" content="随时奉陪"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Git 总结是什么？  分布式版本管理工具  SVN：集中式版本管理工具 分布式 VS 集中式分布式：  每个用户都在本地拥有一个完整的仓库 优点：  如果任意服务器崩溃了，可以立即从用户手中 clone 一份完全一样的代码仓库出来，不用担心服务器崩溃 可以本地提交    集中式：  由一个代码服务"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://metabo6.github.io/posts/f1991798"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Git 总结',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-11-24 10:54:49'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/butterfly/index.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">30</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-tags"></i><span> 仿 win10</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-folder-open"></i><span> 学习资料</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-fish"></i><span> 摸鱼</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-tools"></i><span> 工具</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-anchor"></i><span> 动画</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-place-of-worship"></i><span> 摸鱼大军</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/../../../../img/React%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%BB%E7%BB%93/git.webp')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">随时奉陪</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-tags"></i><span> 仿 win10</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-folder-open"></i><span> 学习资料</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-fish"></i><span> 摸鱼</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-tools"></i><span> 工具</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-anchor"></i><span> 动画</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-place-of-worship"></i><span> 摸鱼大军</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Git 总结</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-24T02:22:36.000Z" title="发表于 2022-11-24 10:22:36">2022-11-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-24T02:54:49.042Z" title="更新于 2022-11-24 10:54:49">2022-11-24</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Git 总结"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Git-总结"><a href="#Git-总结" class="headerlink" title="Git 总结"></a>Git 总结</h1><p>是什么？</p>
+<ul>
+<li>分布式版本管理工具</li>
+</ul>
+<p>SVN：集中式版本管理工具</p>
+<h2 id="分布式-VS-集中式"><a href="#分布式-VS-集中式" class="headerlink" title="分布式 VS 集中式"></a>分布式 VS 集中式</h2><p>分布式：</p>
+<ul>
+<li><p>每个用户都在本地拥有一个完整的仓库</p>
+<p>优点：</p>
+<ul>
+<li>如果任意服务器崩溃了，可以立即从用户手中 clone 一份完全一样的代码仓库出来，不用担心服务器崩溃</li>
+<li>可以本地提交</li>
+</ul>
+</li>
+</ul>
+<p>集中式：</p>
+<ul>
+<li><p>由一个代码服务器集中管理代码</p>
+<p>优点：</p>
+<ul>
+<li>代码必须存储在服务器上，如果没有服务器则无法提交和更新，代码安全性高</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>如果服务器崩了，就废了</li>
+</ul>
+</li>
+</ul>
+<p>结论：前端领域更多的使用 Git 而不是 SVN。</p>
+<h2 id="Git-基本操作"><a href="#Git-基本操作" class="headerlink" title="Git 基本操作"></a>Git 基本操作</h2><h3 id="初始化仓库到推送至远程"><a href="#初始化仓库到推送至远程" class="headerlink" title="初始化仓库到推送至远程"></a>初始化仓库到推送至远程</h3><ol>
+<li><p>初始化仓库</p>
+<p>在当前目录下生成一个 .git 目录</p>
+<p>当前目录下所有的文件都处于 Untracked 未追踪的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>添加至暂存区</p>
+<p>将当前目录所有文件都添加到暂存区</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>提交至本地仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">&quot;提交日志&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>推送至远程仓库</p>
+<ol>
+<li><p>在 Gitee 或 Github 等平台创建一个远程仓库</p>
+</li>
+<li><p>配置 SSH Keys</p>
+</li>
+<li><p>关联远程仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加关联远程仓库</span></span><br><span class="line">git remote add origin 仓库地址</span><br><span class="line"><span class="comment"># 删除关联远程仓库</span></span><br><span class="line">git remote remove origin</span><br><span class="line"><span class="comment"># 查看关联的远程仓库</span></span><br><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>推送至远程仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin 分支名</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+<h3 id="查看日志及版本管理"><a href="#查看日志及版本管理" class="headerlink" title="查看日志及版本管理"></a>查看日志及版本管理</h3><ol>
+<li><p>查看日志</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span></span><br><span class="line">git <span class="built_in">log</span> --oneline</span><br><span class="line">git <span class="built_in">log</span> -3 <span class="comment"># 查看最近三次提交记录</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>版本回退</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># --hard 慎用, 会清除所有未提交的代码 (代码只要未提交就无法还原)</span></span><br><span class="line">git reset --hard CommitID</span><br><span class="line"><span class="comment"># --soft 不会清除未提交的代码</span></span><br><span class="line">git reset --soft CommitID</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>需求：我辛辛苦苦写了 300 多行 bug，想全部删除该怎么办？</p>
+</li>
+<li><p>解决方案：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># HEAD~0 表示最新版, HEAD~1 表示上一个版本, 以此类推</span></span><br><span class="line">git reset --hard HEAD~0</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>撤销版本回退</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看操作日志</span></span><br><span class="line">git reflog</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><ul>
+<li>git  init ：项目初始化</li>
+<li>git  add  . ：所有文件添加到暂存区</li>
+<li>git  commit  -m  “XXXX”：暂存区文件添加到本地仓库</li>
+<li>git  status  -s：查看所有文件状态</li>
+<li>git  log&#x2F;reflog  -n  –oneline：查看提交日历;</li>
+<li>git  reset  –hard  ID：版本切换;</li>
+<li>git branch：查看本地全部分支</li>
+<li>git branch -m oldmaster newmaster：修改分支名，前面是旧分支名，后面是新的</li>
+<li>git branch XXX：创建分支（根据主分支创建）</li>
+<li>git checkout XXX：切换分支</li>
+<li>git checkout -b XXX：创建并切换分支</li>
+<li>git merge XXX：主分支合并功能分支</li>
+<li>git branch -D XXX：删除本地分支</li>
+<li>git  remote  add  origin   https&#x2F;ssh地址：添加变量存储仓库地址</li>
+<li>git  push  -u  origin  master：推送给远程仓库分支 （第一次推送需要加 -u）</li>
+<li>git  remote  -v ：查询变量中存储的地址</li>
+<li>git  remote  remove  origin ：删除已关联的远程仓库地址</li>
+<li>ssh-keygen -t rsa -b 4096 -C “邮箱地址”：生成本地 SSH 文件</li>
+<li>ssh -T <a href="mailto:&#103;&#x69;&#116;&#64;&#x67;&#x69;&#116;&#x65;&#x65;&#46;&#99;&#111;&#x6d;">&#103;&#x69;&#116;&#64;&#x67;&#x69;&#116;&#x65;&#x65;&#46;&#99;&#111;&#x6d;</a>：检测 SSH 是否绑定成功</li>
+<li>git clone  SSH&#x2F;HTTPS地址：克隆仓库默认分支</li>
+<li>git  pull  origin  分支名称：拉取远程仓库分支里面最新的代码</li>
+<li>git  remote  show  origin：查看远程仓库分支</li>
+<li>git  checkout  远程分支：跟踪分支(主分支拉，跟踪分支拉取在切换)</li>
+<li>git clone -b 分支名 分支地址：克隆该仓库指定分支，且会在本地创建同名分支</li>
+</ul>
+<h2 id="代码提交流程"><a href="#代码提交流程" class="headerlink" title="代码提交流程"></a>代码提交流程</h2><p>前提：一般情况下，不允许向主分支 push</p>
+<p>工作环境的分支：</p>
+<ul>
+<li>master（线上稳定版本的代码）</li>
+<li>dev（开发分支）</li>
+<li>staging（测试服务器分支）</li>
+<li>login（业务分支…）</li>
+</ul>
+<p>既然不能向主分支 push 代码，如何将代码合并到对应的分支呢？</p>
+<p>解决方法：PR （Pull Request）</p>
+<p>PR 提交流程</p>
+<ol>
+<li>在本地新建一个分支，开始写代码</li>
+<li>功能完成后，提交到本地</li>
+<li>将分支推送至远程仓库</li>
+<li>去远程仓库新建一个 PR</li>
+<li>邀请你的老大来 review (检查) 你的代码</li>
+<li>老大觉得代码通过了，并测试完成后，就同意合并到目标分支</li>
+</ol>
+<p>提交代码的日志规范：</p>
+<ol>
+<li>feat：新增功能</li>
+<li>fix：修复 Bug</li>
+<li>docs： 修改文档</li>
+<li>chore： 添加或修改依赖库（yarn add &#x2F; yarn remove）</li>
+<li>style：修改代码风格</li>
+<li>refactor： 重构</li>
+<li>perf： 性能优化、体验优化</li>
+<li>test： 测试用例</li>
+<li>build： 添加一些打包需要用的依赖</li>
+</ol>
+<p>提交日志的模板：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">📃 docs(Git): 新增了代码提交规范</span><br><span class="line"></span><br><span class="line">写了很多规范名词的释义</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://metabo6.github.io">随时奉陪</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://metabo6.github.io/posts/f1991798.html">https://metabo6.github.io/posts/f1991798.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://metabo6.github.io" target="_blank">随时奉陪</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Git/">Git</a></div><div class="post_share"><div class="social-share" data-image="/../../../../img/React%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%BB%E7%BB%93/git.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/b0de96e1.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/React%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%BB%E7%BB%93/css.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">CSS 总结</div></div></a></div><div class="next-post pull-right"><a href="/posts/50b39724.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/React%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%BB%E7%BB%93/HTML.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">HTML 总结</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/butterfly/index.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">随时奉陪</div><div class="author-info__description">向往自由，追求自由，找寻自由</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">30</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/metabo6"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git-%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text">Git 总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F-VS-%E9%9B%86%E4%B8%AD%E5%BC%8F"><span class="toc-number">1.1.</span> <span class="toc-text">分布式 VS 集中式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">1.2.</span> <span class="toc-text">Git 基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E4%BB%93%E5%BA%93%E5%88%B0%E6%8E%A8%E9%80%81%E8%87%B3%E8%BF%9C%E7%A8%8B"><span class="toc-number">1.2.1.</span> <span class="toc-text">初始化仓库到推送至远程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%97%A5%E5%BF%97%E5%8F%8A%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86"><span class="toc-number">1.2.2.</span> <span class="toc-text">查看日志及版本管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.3.</span> <span class="toc-text">常用命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E6%B5%81%E7%A8%8B"><span class="toc-number">1.3.</span> <span class="toc-text">代码提交流程</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/a5ae354f.html" title="数组、字符串常用方法"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/React%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%BB%E7%BB%93/js.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="数组、字符串常用方法"/></a><div class="content"><a class="title" href="/posts/a5ae354f.html" title="数组、字符串常用方法">数组、字符串常用方法</a><time datetime="2022-11-24T02:24:11.000Z" title="发表于 2022-11-24 10:24:11">2022-11-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/b0de96e1.html" title="CSS 总结"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/React%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%BB%E7%BB%93/css.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CSS 总结"/></a><div class="content"><a class="title" href="/posts/b0de96e1.html" title="CSS 总结">CSS 总结</a><time datetime="2022-11-24T02:22:36.000Z" title="发表于 2022-11-24 10:22:36">2022-11-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/f1991798.html" title="Git 总结"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/React%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%BB%E7%BB%93/git.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Git 总结"/></a><div class="content"><a class="title" href="/posts/f1991798.html" title="Git 总结">Git 总结</a><time datetime="2022-11-24T02:22:36.000Z" title="发表于 2022-11-24 10:22:36">2022-11-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/50b39724.html" title="HTML 总结"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/React%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%BB%E7%BB%93/HTML.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="HTML 总结"/></a><div class="content"><a class="title" href="/posts/50b39724.html" title="HTML 总结">HTML 总结</a><time datetime="2022-11-24T02:22:36.000Z" title="发表于 2022-11-24 10:22:36">2022-11-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/588ad959.html" title="JS 基础总结"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/../../../../img/React%20%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%BB%E7%BB%93/js.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JS 基础总结"/></a><div class="content"><a class="title" href="/posts/588ad959.html" title="JS 基础总结">JS 基础总结</a><time datetime="2022-11-24T02:22:36.000Z" title="发表于 2022-11-24 10:22:36">2022-11-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 随时奉陪</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script src="/js/weather.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
