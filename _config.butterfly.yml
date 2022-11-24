@@ -137,6 +137,12 @@ cover:
     - https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg
     - /img/butterfly/2055080.jpg
     - /img/butterfly/2055885.jpg
+    - /img/butterfly/1.jpg
+    - /img/butterfly/2.webp
+    - /img/butterfly/3.webp
+    - /img/butterfly/4.webp
+    - /img/butterfly/5.webp
+    - /img/butterfly/6.webp
 
 # Replace Broken Images (替換無法顯示的圖片)
 error_img:
@@ -839,13 +845,13 @@ instantpage: false
 # https://github.com/vinta/pangu.js
 # Insert a space between Chinese character and English character (中英文之間添加空格)
 pangu:
-  enable: false
+  enable: true
   field: site # site/post
 
 # Lazyload (圖片懶加載)
 # https://github.com/verlok/vanilla-lazyload
 lazyload:
-  enable: false
+  enable: true
   field: site # site/post
   placeholder:
   blur: false
